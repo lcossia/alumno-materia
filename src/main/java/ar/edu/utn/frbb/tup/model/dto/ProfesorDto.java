@@ -1,6 +1,6 @@
 package ar.edu.utn.frbb.tup.model.dto;
 
-public class AlumnoDto {
+public class ProfesorDto {
 
     String nombre;
     String apellido;

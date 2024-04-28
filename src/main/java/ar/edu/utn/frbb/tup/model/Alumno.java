@@ -1,8 +1,5 @@
 package ar.edu.utn.frbb.tup.model;
 
-
-
-
 import ar.edu.utn.frbb.tup.model.exception.AsignaturaInexistenteException;
 import ar.edu.utn.frbb.tup.model.exception.CorrelatividadException;
 import ar.edu.utn.frbb.tup.model.exception.EstadoIncorrectoException;
@@ -12,12 +9,11 @@ import java.util.List;
 
 public class Alumno {
     private long id;
-
     private String nombre;
     private String apellido;
     private long dni;
-
     private List<Asignatura> asignaturas;
+
 
     public Alumno() {
     }
@@ -27,7 +23,15 @@ public class Alumno {
         this.dni = dni;
 
         asignaturas = new ArrayList<>();
+    }
 
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void setNombre(String nombre) {
@@ -61,6 +65,7 @@ public class Alumno {
     public List<Asignatura> obtenerListaAsignaturas(){
         return this.asignaturas;
     }
+
 
     public void aprobarAsignatura(Materia materia, int nota) throws EstadoIncorrectoException, CorrelatividadException, AsignaturaInexistenteException {
         Asignatura asignaturaAAprobar = getAsignaturaAAprobar(materia);
@@ -105,14 +110,6 @@ public class Alumno {
                 a.setNota(asignatura.getNota().get());
             }
         }
-
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 }

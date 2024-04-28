@@ -1,13 +1,17 @@
 package ar.edu.utn.frbb.tup.persistence;
 
 import ar.edu.utn.frbb.tup.model.Alumno;
-import ar.edu.utn.frbb.tup.persistence.exception.DaoException;
 
 public interface AlumnoDao {
 
-    Alumno saveAlumno(Alumno a);
+    Alumno createAlumno(Alumno alumno);
 
-    Alumno findAlumno(String apellidoAlumno);
+    Alumno getAlumnoById(long idAlumno);
 
-    Alumno loadAlumno(Long dni);
+    Alumno getAlumnoByApellido(String apellido);
+
+    Alumno updateAlumno(Alumno alumno);
+
+    void deleteAlumno(long idAlumno);
+
 }

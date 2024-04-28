@@ -6,6 +6,7 @@ import java.util.Optional;
 
 public class Asignatura {
 
+    private long id;
     private Materia materia;
     private EstadoAsignatura estado;
     private Integer nota;
@@ -15,6 +16,14 @@ public class Asignatura {
     public Asignatura(Materia materia) {
         this.materia = materia;
         this.estado = EstadoAsignatura.NO_CURSADA;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Optional<Integer> getNota() {

@@ -24,7 +24,7 @@ public class AlumnoTest {
     @BeforeAll
     public static void setUp() {
 
-        profesor1 = new Profesor("Luciano", "Salotto", "Lic.");
+        profesor1 = new Profesor("Luciano", "Salotto", "Lic.", 11111111);
         m1 = new Materia("Laboratorio 1", 1, 1, profesor1);
         m2 = new Materia("Laboratorio 2", 1, 2, profesor1);
         m3 = new Materia("Laboratorio 3", 2, 1, profesor1);
@@ -105,7 +105,7 @@ public class AlumnoTest {
         if(alumno.puedeAprobar(alumno.obtenerListaAsignaturas().get(3))) {
             alumno.obtenerListaAsignaturas().get(3).aprobarAsignatura(8);
         }
-        //assertEquals(EstadoAsignatura.APROBADA, alumno.obtenerListaAsignaturas().get(0).getEstado());
+        //assertEquals(EstadoAsignatura.APROBADA, alumno.obtenerListaAsignaturas().loadProfesor(0).getEstado());
         assertEquals(EstadoAsignatura.APROBADA, alumno.obtenerListaAsignaturas().get(1).getEstado());
         assertEquals(EstadoAsignatura.APROBADA, alumno.obtenerListaAsignaturas().get(2).getEstado());
         assertEquals(EstadoAsignatura.APROBADA, alumno.obtenerListaAsignaturas().get(3).getEstado());
@@ -126,23 +126,23 @@ public class AlumnoTest {
 //        Asignatura a5 = new Asignatura(m5);
 //        alumno.agregarAsignatura(a5);
 //
-//        alumno.obtenerListaAsignaturas().get(0).cursarAsignatura();
-//        alumno.obtenerListaAsignaturas().get(1).cursarAsignatura();
-//        alumno.obtenerListaAsignaturas().get(2).cursarAsignatura();
-//        alumno.obtenerListaAsignaturas().get(3).cursarAsignatura();
-//        alumno.obtenerListaAsignaturas().get(4).cursarAsignatura();
+//        alumno.obtenerListaAsignaturas().loadProfesor(0).cursarAsignatura();
+//        alumno.obtenerListaAsignaturas().loadProfesor(1).cursarAsignatura();
+//        alumno.obtenerListaAsignaturas().loadProfesor(2).cursarAsignatura();
+//        alumno.obtenerListaAsignaturas().loadProfesor(3).cursarAsignatura();
+//        alumno.obtenerListaAsignaturas().loadProfesor(4).cursarAsignatura();
 //        try {
-//            if(alumno.puedeAprobar(alumno.obtenerListaAsignaturas().get(0))) {
-//                alumno.obtenerListaAsignaturas().get(0).aprobarAsignatura(8);
+//            if(alumno.puedeAprobar(alumno.obtenerListaAsignaturas().loadProfesor(0))) {
+//                alumno.obtenerListaAsignaturas().loadProfesor(0).aprobarAsignatura(8);
 //            }
-//            if(alumno.puedeAprobar(alumno.obtenerListaAsignaturas().get(1))) {
-//                alumno.obtenerListaAsignaturas().get(1).aprobarAsignatura(8);
+//            if(alumno.puedeAprobar(alumno.obtenerListaAsignaturas().loadProfesor(1))) {
+//                alumno.obtenerListaAsignaturas().loadProfesor(1).aprobarAsignatura(8);
 //            }
-//            if(alumno.puedeAprobar(alumno.obtenerListaAsignaturas().get(2))) {
-//                alumno.obtenerListaAsignaturas().get(2).aprobarAsignatura(8);
+//            if(alumno.puedeAprobar(alumno.obtenerListaAsignaturas().loadProfesor(2))) {
+//                alumno.obtenerListaAsignaturas().loadProfesor(2).aprobarAsignatura(8);
 //            }
-//            if(alumno.puedeAprobar(alumno.obtenerListaAsignaturas().get(3))) {
-//                alumno.obtenerListaAsignaturas().get(3).aprobarAsignatura(8);
+//            if(alumno.puedeAprobar(alumno.obtenerListaAsignaturas().loadProfesor(3))) {
+//                alumno.obtenerListaAsignaturas().loadProfesor(3).aprobarAsignatura(8);
 //            }
 //        }
 //         catch (EstadoIncorrectoException e) {

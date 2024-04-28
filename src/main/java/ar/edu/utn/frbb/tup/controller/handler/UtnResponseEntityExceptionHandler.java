@@ -36,9 +36,6 @@ public class UtnResponseEntityExceptionHandler extends ResponseEntityExceptionHa
                 new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 
-
-
-    @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
         if (body == null) {
             CustomApiError error = new CustomApiError();
@@ -48,6 +45,5 @@ public class UtnResponseEntityExceptionHandler extends ResponseEntityExceptionHa
 
         return new ResponseEntity(body, headers, status);
     }
-
 
 }

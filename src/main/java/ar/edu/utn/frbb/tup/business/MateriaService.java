@@ -7,9 +7,10 @@ import ar.edu.utn.frbb.tup.persistence.exception.MateriaNotFoundException;
 import java.util.List;
 
 public interface MateriaService {
+
     Materia crearMateria(MateriaDto inputData) throws IllegalArgumentException;
 
     List<Materia> getAllMaterias();
 
-    Materia getMateriaById(int idMateria) throws MateriaNotFoundException;
+    Materia getMateriaById(long idMateria) throws MateriaNotFoundException;
 }

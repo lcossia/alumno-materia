@@ -1,18 +1,18 @@
 package ar.edu.utn.frbb.tup.model.dto;
 
-public class MateriaDto {
+public class AsignaturaDto {
 
     private String nombre;
     private int anio;
     private int cuatrimestre;
-    private long profesorId;
+    private long alumnoId;
 
-    public long getProfesorId() {
-        return profesorId;
+    public long getAlumnoId() {
+        return alumnoId;
     }
 
-    public void setProfesorId(long profesorId) {
-        this.profesorId = profesorId;
+    public void setAlumnoId(long alumnoId) {
+        this.alumnoId = alumnoId;
     }
 
     public String getNombre() {
@@ -38,5 +38,4 @@ public class MateriaDto {
     public void setCuatrimestre(int cuatrimestre) {
         this.cuatrimestre = cuatrimestre;
     }
-
 }

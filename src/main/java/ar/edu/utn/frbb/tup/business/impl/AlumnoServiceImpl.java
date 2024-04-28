@@ -10,7 +10,7 @@ import ar.edu.utn.frbb.tup.model.dto.AlumnoDto;
 import ar.edu.utn.frbb.tup.model.exception.CorrelatividadesNoAprobadasException;
 import ar.edu.utn.frbb.tup.model.exception.EstadoIncorrectoException;
 import ar.edu.utn.frbb.tup.persistence.AlumnoDao;
-import ar.edu.utn.frbb.tup.persistence.AlumnoDaoMemoryImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
@@ -18,40 +18,39 @@ import java.util.Random;
 @Component
 public class AlumnoServiceImpl implements AlumnoService {
 
-    private static final AlumnoDao alumnoDao = new AlumnoDaoMemoryImpl();
-    private static final AsignaturaService asignaturaService = new AsignaturaServiceImpl();
+    private final AlumnoDao alumnoDao;
+    private final AsignaturaService asignaturaService;
+
+    @Autowired
+    public AlumnoServiceImpl(AlumnoDao alumnoDao, AsignaturaService asignaturaService) {
+        this.alumnoDao = alumnoDao;
+        this.asignaturaService = asignaturaService;
+    }
 
     @Override
-    public void aprobarAsignatura(int materiaId, int nota, long dni) throws EstadoIncorrectoException, CorrelatividadesNoAprobadasException {
+    public Alumno crearAlumno(AlumnoDto alumno) {
+        Alumno a = new Alumno(alumno.getNombre(), alumno.getApellido(), alumno.getDni());
+        return alumnoDao.createAlumno(a);
+    }
+
+    @Override
+    public void aprobarAsignatura(long materiaId, int nota, long dni) throws EstadoIncorrectoException, CorrelatividadesNoAprobadasException {
         Asignatura a = asignaturaService.getAsignatura(materiaId, dni);
-        for (Materia m:
-             a.getMateria().getCorrelatividades()) {
-            Asignatura correlativa = asignaturaService.getAsignatura(m.getMateriaId(), dni);
+        for (Materia m : a.getMateria().getCorrelatividades()) {
+            Asignatura correlativa = asignaturaService.getAsignatura(m.getId(), dni);
             if (!EstadoAsignatura.APROBADA.equals(correlativa.getEstado())) {
                 throw new CorrelatividadesNoAprobadasException("La materia " + m.getNombre() + " debe estar aprobada para aprobar " + a.getNombreAsignatura());
             }
         }
         a.aprobarAsignatura(nota);
         asignaturaService.actualizarAsignatura(a);
-        Alumno alumno = alumnoDao.loadAlumno(dni);
+        Alumno alumno = alumnoDao.getAlumnoById(dni);
         alumno.actualizarAsignatura(a);
-        alumnoDao.saveAlumno(alumno);
+        alumnoDao.updateAlumno(alumno);
     }
 
     @Override
-    public Alumno crearAlumno(AlumnoDto alumno) {
-        Alumno a = new Alumno();
-        a.setNombre(alumno.getNombre());
-        a.setApellido(alumno.getApellido());
-        a.setDni(alumno.getDni());
-        Random random = new Random();
-        a.setId(random.nextLong());
-        alumnoDao.saveAlumno(a);
-        return a;
-    }
-
-    @Override
-    public Alumno buscarAlumno(String apellido) {
-        return alumnoDao.findAlumno(apellido);
+    public Alumno buscarAlumnoPorApellido(String apellido) {
+        return alumnoDao.getAlumnoByApellido(apellido);
     }
 }
